@@ -156,5 +156,8 @@ public class GameService {
         return gameRepository.findByCompleteTrue();
     }
 
+    public List<Game> findGamesByWord(String word){
+        return gameRepository.findByWord(word);
+    }
 
 }

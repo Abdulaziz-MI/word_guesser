@@ -22,12 +22,13 @@ public class GameController {
     GameService gameService;
 
     @GetMapping
-    public ResponseEntity<List<Game>> getAllGames(@RequestParam Optional<Boolean> isComplete){
+    public ResponseEntity<List<Game>> getAllGames(@RequestParam Optional<Boolean> isComplete, @RequestParam Optional<String> word){
         List<Game> games;
         if (isComplete.isPresent()){
             games =gameService.getAllCompletedGames();
-        }
-        else {
+        } else if (word.isPresent()) {
+            games = gameService.findGamesByWord(word.get() );
+        } else {
             games = gameService.getAllGames();
         }
 
